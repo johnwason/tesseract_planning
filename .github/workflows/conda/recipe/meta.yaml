@@ -1,5 +1,5 @@
 package:
-    name: tesseract
+    name: tesseract_planning
     version: "0.1.0"
 
 source:
@@ -39,6 +39,9 @@ requirements:
       - jsoncpp
       - yaml-cpp
       - bullet-cpp
+      - liblapack
+      - ompl
+      - taskflow
       - xorg-libx11    # [unix]
       - xorg-libxext   # [unix]
     run:
@@ -59,6 +62,9 @@ requirements:
       - taskflow 
       - yaml-cpp
       - bullet-cpp
+      - liblapack
+      - ompl
+      - taskflow
       - xorg-libx11    # [unix]
       - xorg-libxext   # [unix]
 
@@ -67,5 +73,5 @@ build:
   number: 0
 
 about:
-  home: https://github.com/ros-industrial-consortium/tesseract
+  home: https://github.com/ros-industrial-consortium/tesseract_planning
   summary: Tesseract robotics motion planning framework

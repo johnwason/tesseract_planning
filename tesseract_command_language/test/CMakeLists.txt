@@ -65,6 +65,7 @@ add_dependencies(run_tests ${PROJECT_NAME}_utils_unit)
 add_dependencies(${PROJECT_NAME}_utils_unit ${PROJECT_NAME})
 
 # Type Erasure Benchmarks
+if(TESSERACT_ENABLE_BENCHMARKING OR TESSERACT_COMMAND_LANGUAGE_ENABLE_BENCHMARKING)
 find_package(benchmark REQUIRED)
 add_executable(${PROJECT_NAME}_type_erasure_benchmark type_erasure_benchmark.cpp)
 target_link_libraries(${PROJECT_NAME}_type_erasure_benchmark PRIVATE benchmark::benchmark ${PROJECT_NAME})
@@ -75,4 +76,5 @@ target_code_coverage(
   ALL
   EXCLUDE ${COVERAGE_EXCLUDE}
   ENABLE ${TESSERACT_ENABLE_CODE_COVERAGE})
+endif()
 # add_run_benchmark_target(${PROJECT_NAME}_type_erasure_benchmark)

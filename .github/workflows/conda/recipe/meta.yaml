@@ -44,6 +44,7 @@ requirements:
       - taskflow
       - xorg-libx11    # [unix]
       - xorg-libxext   # [unix]
+      - blas
     run:
       - boost-cpp
       - eigen 
@@ -67,6 +68,7 @@ requirements:
       - taskflow
       - xorg-libx11    # [unix]
       - xorg-libxext   # [unix]
+      - blas
 
 build:
   skip: true # [py<37]

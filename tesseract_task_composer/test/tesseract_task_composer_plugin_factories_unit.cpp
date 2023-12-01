@@ -111,7 +111,6 @@ void runTaskComposerFactoryTest(TaskComposerPluginFactory& factory, YAML::Node p
 
 TEST(TesseractTaskComposerFactoryUnit, LoadAndExportPluginTest)  // NOLINT
 {
-  {  // File Path Construction
 #ifdef TESSERACT_TASK_COMPOSER_HAS_TRAJOPT_IFOPT
     tesseract_common::fs::path config_path(std::string(TESSERACT_TASK_COMPOSER_DIR) + "/config/"
                                                                                       "task_composer_plugins.yaml");
@@ -121,48 +120,39 @@ TEST(TesseractTaskComposerFactoryUnit, LoadAndExportPluginTest)  // NOLINT
                                                                                       "trajopt_"
                                                                                       "ifopt.yaml");
 #endif
+
+  auto export_config_path = tesseract_common::fs::path(tesseract_common::getTempPath()) / "task_composer_plugins_"
+                                                                                          "export.yaml";
+  {  // File Path Construction
     TaskComposerPluginFactory factory(config_path);
     YAML::Node plugin_config = YAML::LoadFile(config_path.string());
     runTaskComposerFactoryTest(factory, plugin_config);
 
-    auto export_config_path = tesseract_common::fs::path(tesseract_common::getTempPath()) / "task_composer_plugins_"
-                                                                                            "export.yaml";
     TaskComposerPluginFactory check_factory(export_config_path);
     runTaskComposerFactoryTest(check_factory, plugin_config);
   }
 
   {  // String Constructor
-    tesseract_common::fs::path config_path(std::string(TESSERACT_TASK_COMPOSER_DIR) + "/config/"
-                                                                                      "task_composer_plugins.yaml");
 
     TaskComposerPluginFactory factory(tesseract_common::fileToString(config_path));
     YAML::Node plugin_config = YAML::LoadFile(config_path.string());
     runTaskComposerFactoryTest(factory, plugin_config);
 
-    auto export_config_path = tesseract_common::fs::path(tesseract_common::getTempPath()) / "task_composer_plugins_"
-                                                                                            "export.yaml";
     TaskComposerPluginFactory check_factory(export_config_path);
     runTaskComposerFactoryTest(check_factory, plugin_config);
   }
 
   {  // YAML Node Constructor
-    tesseract_common::fs::path config_path(std::string(TESSERACT_TASK_COMPOSER_DIR) + "/config/"
-                                                                                      "task_composer_plugins.yaml");
-
     YAML::Node plugin_config = YAML::LoadFile(config_path.string());
     TaskComposerPluginFactory factory(plugin_config);
     runTaskComposerFactoryTest(factory, plugin_config);
 
-    auto export_config_path = tesseract_common::fs::path(tesseract_common::getTempPath()) / "task_composer_plugins_"
-                                                                                            "export.yaml";
     TaskComposerPluginFactory check_factory(export_config_path);
     runTaskComposerFactoryTest(check_factory, plugin_config);
   }
 
   // TaskComposerPluginInfo Constructor
   {
-    tesseract_common::fs::path config_path(std::string(TESSERACT_TASK_COMPOSER_DIR) + "/config/"
-                                                                                      "task_composer_plugins.yaml");
 
     YAML::Node plugin_config = YAML::LoadFile(config_path.string());
     const YAML::Node& plugins = plugin_config[tesseract_common::TaskComposerPluginInfo::CONFIG_KEY];
@@ -179,8 +169,6 @@ TEST(TesseractTaskComposerFactoryUnit, LoadAndExportPluginTest)  // NOLINT
     TaskComposerPluginFactory factory(info);
     runTaskComposerFactoryTest(factory, plugin_config);
 
-    auto export_config_path = tesseract_common::fs::path(tesseract_common::getTempPath()) / "task_composer_plugins_"
-                                                                                            "export.yaml";
     TaskComposerPluginFactory check_factory(export_config_path);
     runTaskComposerFactoryTest(check_factory, plugin_config);
   }

@@ -2,6 +2,7 @@ find_package(tesseract_environment REQUIRED)
 find_package(tesseract_command_language REQUIRED)
 find_package(tesseract_visualization REQUIRED)
 find_package(Taskflow REQUIRED)
+find_package(boost_plugin_loader REQUIRED)
 
 add_executable(${PROJECT_NAME}_example task_composer_example.cpp)
 target_link_libraries(
@@ -10,7 +11,8 @@ target_link_libraries(
           ${PROJECT_NAME}_taskflow
           console_bridge::console_bridge
           tesseract::tesseract_environment
-          tesseract::tesseract_command_language)
+          tesseract::tesseract_command_language
+          boost_plugin_loader::boost_plugin_loader)
 target_compile_options(${PROJECT_NAME}_example PRIVATE ${TESSERACT_COMPILE_OPTIONS_PRIVATE}
                                                        ${TESSERACT_COMPILE_OPTIONS_PUBLIC})
 target_compile_definitions(${PROJECT_NAME}_example PRIVATE ${TESSERACT_COMPILE_DEFINITIONS})
@@ -27,7 +29,8 @@ target_link_libraries(
           console_bridge::console_bridge
           tesseract::tesseract_environment
           tesseract::tesseract_command_language
-          tesseract::tesseract_visualization)
+          tesseract::tesseract_visualization
+          boost_plugin_loader::boost_plugin_loader)
 target_compile_options(${PROJECT_NAME}_trajopt_example PRIVATE ${TESSERACT_COMPILE_OPTIONS_PRIVATE}
                                                                ${TESSERACT_COMPILE_OPTIONS_PUBLIC})
 target_compile_definitions(${PROJECT_NAME}_trajopt_example PRIVATE ${TESSERACT_COMPILE_DEFINITIONS})
@@ -44,7 +47,8 @@ target_link_libraries(
           console_bridge::console_bridge
           tesseract::tesseract_environment
           tesseract::tesseract_command_language
-          tesseract::tesseract_visualization)
+          tesseract::tesseract_visualization
+          boost_plugin_loader::boost_plugin_loader)
 target_compile_options(${PROJECT_NAME}_raster_example PRIVATE ${TESSERACT_COMPILE_OPTIONS_PRIVATE}
                                                               ${TESSERACT_COMPILE_OPTIONS_PUBLIC})
 target_compile_definitions(${PROJECT_NAME}_raster_example PRIVATE ${TESSERACT_COMPILE_DEFINITIONS})

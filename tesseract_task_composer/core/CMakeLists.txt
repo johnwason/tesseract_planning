@@ -1,6 +1,8 @@
 # Need to create export header so static class variables can be exported on windows build
 include(GenerateExportHeader)
 
+find_package(boost_plugin_loader REQUIRED)
+
 add_library(
   ${PROJECT_NAME}
   src/task_composer_data_storage.cpp
@@ -24,7 +26,8 @@ target_link_libraries(
          tesseract::tesseract_common
          Boost::boost
          Boost::serialization
-         yaml-cpp)
+         yaml-cpp
+         boost_plugin_loader::boost_plugin_loader)
 target_compile_options(${PROJECT_NAME} PRIVATE ${TESSERACT_COMPILE_OPTIONS_PRIVATE})
 target_compile_options(${PROJECT_NAME} PUBLIC ${TESSERACT_COMPILE_OPTIONS_PUBLIC})
 target_compile_definitions(
@@ -127,6 +130,7 @@ configure_component(
     tesseract_common
     "Boost REQUIRED COMPONENTS serialization"
     yaml-cpp
+    boost_plugin_loader
   CFG_EXTRAS cmake/core-extras.cmake)
 
 if(TESSERACT_PACKAGE)

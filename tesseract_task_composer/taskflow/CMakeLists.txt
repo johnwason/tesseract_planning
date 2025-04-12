@@ -1,4 +1,5 @@
 find_package(Taskflow REQUIRED)
+find_package(boost_plugin_loader REQUIRED)
 
 add_library(${PROJECT_NAME}_taskflow src/taskflow_task_composer_executor.cpp src/taskflow_task_composer_future.cpp)
 target_link_libraries(
@@ -9,7 +10,8 @@ target_link_libraries(
          Boost::boost
          Boost::serialization
          Taskflow::Taskflow
-         yaml-cpp)
+         yaml-cpp
+         boost_plugin_loader::boost_plugin_loader)
 target_compile_options(${PROJECT_NAME}_taskflow PRIVATE ${TESSERACT_COMPILE_OPTIONS_PRIVATE})
 target_compile_options(${PROJECT_NAME}_taskflow PUBLIC ${TESSERACT_COMPILE_OPTIONS_PUBLIC})
 target_compile_definitions(${PROJECT_NAME}_taskflow PUBLIC ${TESSERACT_COMPILE_DEFINITIONS})

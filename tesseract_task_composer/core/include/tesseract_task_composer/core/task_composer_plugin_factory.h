@@ -32,6 +32,7 @@ TESSERACT_COMMON_IGNORE_WARNINGS_PUSH
 #include <map>
 #include <memory>
 #include <set>
+#include <boost_plugin_loader/macros.h>
 TESSERACT_COMMON_IGNORE_WARNINGS_POP
 
 #include <tesseract_common/fwd.h>
@@ -39,10 +40,10 @@ TESSERACT_COMMON_IGNORE_WARNINGS_POP
 
 // clang-format off
 #define TESSERACT_ADD_TASK_COMPOSER_EXECUTOR_PLUGIN(DERIVED_CLASS, ALIAS)                                                    \
-  TESSERACT_ADD_PLUGIN_SECTIONED(DERIVED_CLASS, ALIAS, TaskExec)
+  EXPORT_CLASS_SECTIONED(DERIVED_CLASS, ALIAS, TaskExec)
 
 #define TESSERACT_ADD_TASK_COMPOSER_NODE_PLUGIN(DERIVED_CLASS, ALIAS)                                                  \
-  TESSERACT_ADD_PLUGIN_SECTIONED(DERIVED_CLASS, ALIAS, TaskNode)
+  EXPORT_CLASS_SECTIONED(DERIVED_CLASS, ALIAS, TaskNode)
 // clang-format on
 
 namespace YAML

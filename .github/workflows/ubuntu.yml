@@ -22,6 +22,7 @@ on:
 
 jobs:
   ci:
+    container: ubuntu:${{ matrix.distro }}
     name: ${{ matrix.distro }}
     runs-on: ubuntu-latest
     strategy:

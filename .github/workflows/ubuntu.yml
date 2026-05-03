@@ -54,6 +54,9 @@ jobs:
         run: |
           apt install -y libtaskflow-cpp-dev
 
+      - name: printenv
+        run: printenv
+
       - name: Build and Tests
         uses: tesseract-robotics/colcon-action@v14
         with:
